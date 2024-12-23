@@ -110,6 +110,10 @@ function rbac_version () {
                         *-canary) version="$(echo "$version" | sed -e 's/\(.*\)-canary/release-\1/')";;
     esac
 
+    if [ "$version" == "master" ] && [ "$image" == "csi-snapshot-metadata" ]; then
+        version="main"
+    fi
+
     echo "$version"
 }
 
